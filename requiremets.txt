@@ -1,0 +1,8 @@
+asttokens==2.0.4
+colorama==0.4.4
+executing==0.5.4
+icecream==2.1.0
+pycodestyle==2.7.0
+pygame==2.0.1
+Pygments==2.8.1
+six==1.15.0
