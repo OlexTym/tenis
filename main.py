@@ -46,35 +46,24 @@ def ball_define():
                 BALL_DIAMETER, ball_move_x, ball_move_y)
 
 
+# Define player
+def player_define(x, y):
+    return Player(screen, Colors.WHITE, x, y)
+
+
 # Define pleyer 1
 player_one_x = 20
 player_one_y = 20
-
-player_one_size_x = 20
-player_one_size_y = 100
-
-player_one_speed = 6
-
-player_one_up = False
-player_one_down = False
-
-player_one = Player(screen, Colors.WHITE, player_one_x, player_one_y,
-                    player_one_size_x, player_one_size_y, player_one_speed)
+player_one = player_define(player_one_x, player_one_y)
+player_one_up = False;
+player_one_down = False;
 
 # Define pleyer 2
 player_two_x = screen.get_width() - 40
 player_two_y = 20
-
-player_two_size_x = 20
-player_two_size_y = 100
-
-player_two_speed = 10
-
-player_two_up = False
-player_two_down = False
-
-player_two = Player(screen, Colors.WHITE, player_two_x, player_two_y,
-                    player_two_size_x, player_two_size_y, player_two_speed)                    
+player_two = player_define(player_two_x, player_two_y)
+player_two_up = False;
+player_two_down = False;
 
 ball = ball_define()
 # Main cycle
