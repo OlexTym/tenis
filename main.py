@@ -1,7 +1,11 @@
-from colors import Colors
+
 import pygame
 from datetime import datetime
 from icecream import ic
+
+from colors import Colors
+from player import Player
+from ball import Ball
 
 
 # Icecream
@@ -28,70 +32,19 @@ fps = 60
 clock = pygame.time.Clock()
 
 
-class Ball():
-
-    def __init__(self, screen, color, pos_x, pos_y, size, move_x, move_y):
-        self.screen = screen
-        self.color = color
-        self.rect = pygame.Rect(pos_x, pos_y, size, size)
-        self.move_x = move_x
-        self.move_y = move_y
-        self.ball = pygame.draw.ellipse(self.screen, self.color, self.rect)
-
-    def draw_ball(self):
-        self.ball = pygame.draw.ellipse(self.screen, self.color, self.rect)
-
-    def move_ball(self):
-
-        if self.rect.top > (screen.get_height() - self.rect.height) or self.rect.top < 0:
-            self.move_y *= -1
-
-        if self.rect.left > (screen.get_width() - self.rect.width) or self.rect.left < 0:
-            self.move_x *= -1
-
-        self.rect.move_ip(0, self.move_y)
-        self.rect.move_ip(self.move_x, 0)   
-  
-    def racket_shoot(self):
-        self.move_x *= -1
-        self.rect.move_ip(self.move_x * 2, 0)
-
-
-class Player(pygame.Rect):
-
-    def __init__(self, screen, color, pos_x, pos_y, size_x, size_y, move_step):
-        self.screen = screen
-        self.color = color
-        self.rect = pygame.Rect(pos_x, pos_y, size_x, size_y)
-        self.move_step = move_step
-        self.racket = pygame.draw.rect(self.screen, self.color, self.rect)
-
-    def draw_racket(self):
-        self.racket = pygame.draw.rect(self.screen, self.color, self.rect)
-
-    def move_down(self):
-        ic()
-        if (self.rect.top < self.screen.get_height() - self.rect.height):
-            self.rect.move_ip(0, self.move_step)
-
-    def move_up(self):
-        ic()
-        if (self.rect.top > 0):
-            self.rect.move_ip(0, -self.move_step)
-
-
 # Define ball
-BALL_DIAMETER = 20
+def ball_define():
+    BALL_DIAMETER = 20
 
-ball_position_x = 10
-ball_position_y = 20
+    ball_position_x = 10
+    ball_position_y = 20
 
-ball_move_x = 4
-ball_move_y = 4
+    ball_move_x = 4
+    ball_move_y = 4
 
-ball = Ball(screen, Colors.WHITE, ball_position_x, ball_position_y,
-            BALL_DIAMETER, ball_move_x, ball_move_y)
-ball.draw_ball()
+    return Ball(screen, Colors.WHITE, ball_position_x, ball_position_y,
+                BALL_DIAMETER, ball_move_x, ball_move_y)
+
 
 # Define pleyer 1
 player_one_x = 20
@@ -123,6 +76,7 @@ player_two_down = False
 player_two = Player(screen, Colors.WHITE, player_two_x, player_two_y,
                     player_two_size_x, player_two_size_y, player_two_speed)                    
 
+ball = ball_define()
 # Main cycle
 while(play_active):
 
