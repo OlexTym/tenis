@@ -1,4 +1,5 @@
 
+from icecream.icecream import colorizedStderrPrint
 import pygame
 from datetime import datetime
 from icecream import ic
@@ -18,8 +19,8 @@ ic.configureOutput(prefix=time_format)
 pygame.init()
 
 # Screen
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
+SCREEN_WIDTH = 1024
+SCREEN_HEIGHT = 820
 screen = pygame.display.set_mode(size=(SCREEN_WIDTH, SCREEN_HEIGHT))
 # Windows title
 pygame.display.set_caption("Tennis v1")
@@ -31,41 +32,21 @@ play_active = True
 fps = 60
 clock = pygame.time.Clock()
 
-
-# Define ball
-def ball_define():
-    BALL_DIAMETER = 20
-
-    ball_position_x = 10
-    ball_position_y = 20
-
-    ball_move_x = 4
-    ball_move_y = 4
-
-    return Ball(screen, Colors.WHITE, ball_position_x, ball_position_y,
-                BALL_DIAMETER, ball_move_x, ball_move_y)
-
-
-# Define player
-def player_define(x, y):
-    return Player(screen, Colors.WHITE, x, y)
-
-
 # Define pleyer 1
 player_one_x = 20
 player_one_y = 20
-player_one = player_define(player_one_x, player_one_y)
-player_one_up = False;
-player_one_down = False;
+player_one = Player(screen, Colors.WHITE, player_one_x, player_one_y)
+player_one_up = False
+player_one_down = False
 
 # Define pleyer 2
 player_two_x = screen.get_width() - 40
 player_two_y = 20
-player_two = player_define(player_two_x, player_two_y)
-player_two_up = False;
-player_two_down = False;
+player_two = Player(screen, Colors.WHITE, player_two_x, player_two_y)
+player_two_up = False
+player_two_down = False
 
-ball = ball_define()
+ball = Ball(screen, Colors.WHITE)
 # Main cycle
 while(play_active):
 
